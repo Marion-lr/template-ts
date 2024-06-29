@@ -1,0 +1,44 @@
+@startuml
+
+class Clock {
+  - currentTime: Date
+  - isEditable: boolean
+  - mode: Mode
+  + getCurrentTime(): Date
+  + setTime(hour: number, minute: number): void
+  + incrementHour(): void
+  + incrementMinute(): void
+  + toggleEditMode(): void
+}
+
+enum Mode {
+  DISPLAY
+  EDIT_HOUR
+  EDIT_MINUTE
+}
+
+class ClockView {
+  + render(clock: Clock): void
+  + updateTimeDisplay(time: Date): void
+  + toggleLight(on: boolean): void
+}
+
+class Button {
+  - label: string
+  - onClick: () => void
+  + render(): void
+}
+
+class ClockController {
+  - clock: Clock
+  - view: ClockView
+  + handleModeButtonClick(): void
+  + handleIncreaseButtonClick(): void
+  + handleLightButtonClick(): void
+}
+
+Clock "1" *-- "1..*" ClockView
+ClockView "1" *-- "3" Button
+ClockController "1" --> "1" Clock
+ClockController "1" --> "1" ClockView
+@enduml
