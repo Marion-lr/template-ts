@@ -1,3 +1,47 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+}
+
 h1 {
     color: red;
+}
+
+.container {
+    text-align: center;
+}
+
+.circle {
+    width: 200px;
+    height: 200px;
+    background-color: #C689EB;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.rectangle {
+    width: 100px;
+    height: 50px;
+    background-color: white;
+    border: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rectangle.light-on {
+    background-color: yellow;
+}
+
+#timeDisplay {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    color: black;
 }

@@ -2,13 +2,14 @@
 
 class Clock {
   - currentTime: Date
-  - isEditable: boolean
   - mode: Mode
+  + constructor()
   + getCurrentTime(): Date
-  + setTime(hour: number, minute: number): void
   + incrementHour(): void
   + incrementMinute(): void
-  + toggleEditMode(): void
+  + getMode(): Mode
+  + setMode(mode: Mode): void
+  + tick(): void
 }
 
 enum Mode {
@@ -18,27 +19,28 @@ enum Mode {
 }
 
 class ClockView {
+  - timeDisplay: HTMLElement
+  - lightOn: boolean
+  + constructor()
   + render(clock: Clock): void
   + updateTimeDisplay(time: Date): void
-  + toggleLight(on: boolean): void
-}
-
-class Button {
-  - label: string
-  - onClick: () => void
-  + render(): void
+  + toggleLight(on: boolean, time: Date): void
 }
 
 class ClockController {
   - clock: Clock
   - view: ClockView
-  + handleModeButtonClick(): void
-  + handleIncreaseButtonClick(): void
-  + handleLightButtonClick(): void
+  + constructor(clock: Clock, view: ClockView)
+  + initialize(): void
+  + startClock(): void
+  + changeMode(): void
+  + increase(): void
+  + toggleLight(): void
 }
 
-Clock "1" *-- "1..*" ClockView
-ClockView "1" *-- "3" Button
-ClockController "1" --> "1" Clock
-ClockController "1" --> "1" ClockView
+ClockController --> Clock
+ClockController --> ClockView
+ClockView --> Clock
+Clock --> Mode
+
 @enduml
