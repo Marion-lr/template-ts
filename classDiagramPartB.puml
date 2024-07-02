@@ -1,0 +1,54 @@
+@startuml
+
+class Clock {
+  - currentTime: Date
+  - mode: Mode
+  - timezoneOffset: number
+  + constructor(timezoneOffset: number = 0)
+  + getCurrentTime(): Date
+  + incrementHour(): void
+  + incrementMinute(): void
+  + getMode(): Mode
+  + setMode(mode: Mode): void
+  + tick(): void
+  + reset(): void
+}
+
+enum Mode {
+  DISPLAY
+  EDIT_HOUR
+  EDIT_MINUTE
+}
+
+class ClockView {
+  - timeDisplay: HTMLElement
+  - lightOn: boolean
+  - parentElement: HTMLElement
+  - is24HourFormat: boolean
+  + constructor(parentElement: HTMLElement)
+  + render(clock: Clock): void
+  + updateTimeDisplay(time: Date): void
+  + toggleLight(on: boolean, time: Date): void
+  + addEventListenerToButton(buttonClass: string, eventType: string, listener: EventListenerOrEventListenerObject): void
+  + toggleFormat(): void
+}
+
+class ClockController {
+  - clock: Clock
+  - view: ClockView
+  + constructor(clock: Clock, view: ClockView)
+  + initialize(): void
+  + startClock(): void
+  + changeMode(): void
+  + increase(): void
+  + toggleLight(): void
+  + resetClock(): void
+  + toggleFormat(): void
+}
+
+ClockController --> Clock
+ClockController --> ClockView
+ClockView --> Clock
+Clock --> Mode
+
+@enduml

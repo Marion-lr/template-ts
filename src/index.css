@@ -1,7 +1,7 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     height: 100vh;
     margin: 0;
     flex-direction: column;
@@ -9,10 +9,16 @@ body {
 
 h1 {
     color: red;
+    text-align: center;
 }
 
-.container {
-    text-align: center;
+#clocksContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .circle {
@@ -40,8 +46,34 @@ h1 {
     background-color: yellow;
 }
 
-#timeDisplay {
+.timeDisplay {
     font-family: Arial, sans-serif;
     font-size: 24px;
+    color: black;
+}
+
+button {
+    margin: 5px;
+}
+
+.clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.timezone-display {
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
     color: black;
 }

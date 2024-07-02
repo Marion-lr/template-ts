@@ -13,9 +13,11 @@ export class ClockController {
 
   initialize(): void {
     this.view.render(this.clock);
-    document.getElementById('modeButton').addEventListener('click', () => this.changeMode());
-    document.getElementById('increaseButton').addEventListener('click', () => this.increase());
-    document.getElementById('lightButton').addEventListener('click', () => this.toggleLight());
+    this.view.addEventListenerToButton('.modeButton', 'click', () => this.changeMode());
+    this.view.addEventListenerToButton('.increaseButton', 'click', () => this.increase());
+    this.view.addEventListenerToButton('.lightButton', 'click', () => this.toggleLight());
+    this.view.addEventListenerToButton('.resetButton', 'click', () => this.resetClock());
+    this.view.addEventListenerToButton('.formatButton', 'click', () => this.toggleFormat());
     this.startClock();
   }
 
@@ -25,7 +27,7 @@ export class ClockController {
       this.view.updateTimeDisplay(this.clock.getCurrentTime());
       setTimeout(updateClock, 1000);
     };
-  
+
     updateClock();
   }
 
@@ -53,5 +55,15 @@ export class ClockController {
 
   toggleLight(): void {
     this.view.toggleLight(!this.view['lightOn'], this.clock.getCurrentTime());
+  }
+
+  resetClock(): void {
+    this.clock.reset();
+    this.view.updateTimeDisplay(this.clock.getCurrentTime());
+  }
+
+  toggleFormat(): void {
+    this.view.toggleFormat();
+    this.view.updateTimeDisplay(this.clock.getCurrentTime());
   }
 }
